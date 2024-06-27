@@ -55,7 +55,7 @@ const userSchema = new mongoose.Schema({
   doctorDepartment: {
     type: String,
   },
-  docAvtar: {
+  docAvatar: {
     public_id: String,
     url: String,
   },

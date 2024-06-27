@@ -1,3 +1,4 @@
+import cloudinary from "cloudinary";
 import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
 import { User } from "../models/userSchema.js";
@@ -176,6 +177,9 @@ export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
       message: "User logged out!",
     });
 });
+
+
+
 export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
   res
     .status(200)
@@ -187,4 +191,83 @@ export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
       success: true,
       message: "User logged out!",
     });
+});
+
+
+export const addNewDoctor = catchAsyncErrors(async (req, res, next) => {
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return next(new ErrorHandler("Doctor Avatar Required", 400));
+  }
+
+  const { docAvatar } = req.files;
+  const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+  if (!allowedFormats.includes(docAvatar.mimetype)) {
+    return next(new ErrorHandler("File format Not supported", 400));
+  }
+
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    gender,
+    dob,
+    aadhaar_number,
+    doctorDepartment,
+  } = req.body;
+
+  if (
+    !firstName ||
+    !lastName ||
+    !email ||
+    !phone ||
+    !password ||
+    !gender ||
+    !dob ||
+    !aadhaar_number ||
+    !doctorDepartment
+  ) {
+    return next(new ErrorHandler("Please provide full details", 400));
+  }
+
+  const isRegistered = await User.findOne({ email });
+  if (isRegistered) {
+    return next(
+      new ErrorHandler(`${isRegistered.role} already registered`, 400)
+    );
+  }
+
+  let cloudinaryResponse;
+  try {
+    console.log("Uploading to Cloudinary...");
+    cloudinaryResponse = await cloudinary.uploader.upload(docAvatar.tempFilePath);
+    console.log("Cloudinary upload response:", cloudinaryResponse);
+  } catch (error) {
+    console.error("Cloudinary upload error:", error);
+    return next(new ErrorHandler("Cloudinary upload failed", 500));
+  }
+
+  const doctor = await User.create({
+    firstName,
+    lastName,
+    email,
+    phone,
+    password,
+    gender,
+    dob,
+    aadhaar_number,
+    doctorDepartment,
+    role: "Doctor",
+    docAvatar: {
+      public_id: cloudinaryResponse.public_id,
+      url: cloudinaryResponse.secure_url,
+    },
+  });
+
+  res.status(200).json({
+    success: true,
+    message: "Registration successful",
+    doctor,
+  });
 });

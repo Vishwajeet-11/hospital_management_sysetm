@@ -39,7 +39,7 @@ export const isAdminAuthenticated = catchAsyncErrors(async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
     // console.log("Decoded token:", decoded);
     req.user = await User.findById(decoded.id);
-    console.log("User found:", req.user);
+    // console.log("User found:", req.user);
 
     if (req.user.role !== "Admin") {
       // console.log("User role is not Admin");
