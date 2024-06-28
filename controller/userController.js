@@ -242,7 +242,7 @@ export const addNewDoctor = catchAsyncErrors(async (req, res, next) => {
   try {
     console.log("Uploading to Cloudinary...");
     cloudinaryResponse = await cloudinary.uploader.upload(docAvatar.tempFilePath);
-    console.log("Cloudinary upload response:", cloudinaryResponse);
+    // console.log("Cloudinary upload response:", cloudinaryResponse);
   } catch (error) {
     console.error("Cloudinary upload error:", error);
     return next(new ErrorHandler("Cloudinary upload failed", 500));

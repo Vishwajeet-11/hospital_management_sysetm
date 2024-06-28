@@ -2,6 +2,7 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncErrors.js";
 import ErrorHandler from "../middlewares/errorMiddleware.js";
 import { Message } from "../models/messageSchema.js";
 
+
 export const sendMessage = catchAsyncErrors(async (req, res) => {
   const { firstName, lastName, email, phone, message } = req.body;
 
@@ -23,3 +24,17 @@ export const sendMessage = catchAsyncErrors(async (req, res) => {
     });
   }
 });
+
+export const getAllMessages = catchAsyncErrors(async(req,res, next) => {
+  const messages = await Message.find();
+  if(!messages){
+    return next (new ErrorHandler("messages not found", 400));
+  }
+
+  return res.status(200).json({
+    success: true,
+    message: "all the messages",
+    messagesLength: messages.length,
+    messages: messages 
+  })
+})
