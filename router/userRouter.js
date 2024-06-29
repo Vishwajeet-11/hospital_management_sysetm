@@ -3,7 +3,28 @@ import { addNewAdmin, addNewDoctor, getAdminDetails, getAllDoctors, getAllPatien
 import { isAdminAuthenticated, isPatientAuthenticated } from "../middlewares/auth.js";
 const router = express.Router();
 
+/**
+ * @swagger
+ * /api/v1/user/patient/register:
+ *   post:
+ *     summary: Register a new patient
+ *     tags: [User]
+ *     responses:
+ *       200:
+ *         description: Patient registered successfully
+ */
 router.post("/patient/register", patientRegister);
+
+/**
+ * @swagger
+ * /api/v1/user/login:
+ *   post:
+ *     summary: Log in a user
+ *     tags: [User]
+ *     responses:
+ *       200:
+ *         description: User logged in successfully
+ */
 router.post("/login", login)
 router.post("/admin/addnew", isAdminAuthenticated, addNewAdmin)
 router.get("/doctors", getAllDoctors)
