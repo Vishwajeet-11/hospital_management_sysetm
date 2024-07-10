@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
+import { Context } from "./main";
 import AboutUs from "./pages/AboutUs";
 import Appointment from "./pages/Appointment";
 import Home from "./pages/Home";
