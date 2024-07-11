@@ -1,3 +1,16 @@
 node_modules/
-/config
+
+# Ignore specific files
+file.txt
+secret.txt
+
+# Ignore all files in a directory
 config/
+data/*
+
+# Ignore files with a specific extension
+*.log
+*.tmp
+
+# Ignore all files in the root of a directory
+/build/
