@@ -24,11 +24,11 @@ Technologies Used
 
 Installation
 
-    Clone the repository:
+    Clone the repository: https://github.com/Vishwajeet-11/hospital_management_sysetm.git
 
     bash
 
-git clone <repository-url>
+git clone https://github.com/Vishwajeet-11/hospital_management_sysetm.git
 cd hospital-management-system
 
 Install dependencies:
