@@ -1,4 +1,7 @@
-Hospital Management System
+<h1>Hospital Management System</h1>
+
+
+<img width="960" alt="Screenshot 2024-07-15 034202" src="https://github.com/user-attachments/assets/f83736a9-44fa-4804-9b39-2dbb705c43cd">
 
 This project is a Hospital Management System built using the MERN stack (MongoDB, Express.js, React.js, Node.js). It provides functionalities for admins, doctors, and patients to manage hospital operations efficiently.
 Features
@@ -15,6 +18,11 @@ Features
     Appointment Booking:
         Patients can book appointments with specific doctors based on their specialization.
         Appointment scheduling restricted to logged-in patients.
+
+<img width="960" alt="Screenshot 2024-07-15 034221" src="https://github.com/user-attachments/assets/6c57f253-6ead-403a-ba29-5fcc682a0214">
+
+<img width="960" alt="Screenshot 2024-07-15 034233" src="https://github.com/user-attachments/assets/16dd09cf-02c8-4227-a4b2-435abad04248">
+
 
 Technologies Used
 
@@ -51,6 +59,12 @@ bash
     cd ../frontend && npm start
 
     Access the application at http://localhost:3000 in your browser.
+<img width="960" alt="Screenshot 2024-07-15 034248" src="https://github.com/user-attachments/assets/caff9992-f6e3-41c3-abd8-77b35a04224c">
+
+<img width="960" alt="Screenshot 2024-07-15 034312" src="https://github.com/user-attachments/assets/8246e793-5909-4f2b-930d-4cf86845ae96">
+
+<img width="960" alt="Screenshot 2024-07-15 034324" src="https://github.com/user-attachments/assets/02d1b055-13f9-41db-99d1-ea2c9cfafadd">
+
 
 Usage
 
