@@ -10,9 +10,17 @@ import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 import appointmentRouter from "./router/appointmentRouter.js";
 import messageRouter from "./router/messageRouter.js";
 import userRouter from "./router/userRouter.js";
-
 const app = express();
+
 config({ path: "./config/config.env" });
+
+app.use(
+  cors({
+    origin: ["https://hospital-management-sysetm-server.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
 // Swagger setup
 const swaggerOptions = {
